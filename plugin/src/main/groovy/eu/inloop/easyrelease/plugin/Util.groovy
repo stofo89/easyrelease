@@ -1,5 +1,8 @@
 package eu.inloop.easyrelease.plugin
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 class Util {
 
     static final String TAG = '[easyrelease]'
@@ -13,8 +16,9 @@ class Util {
             // first check version code and name from Gradle build script, then from AndroidManifest.xml
             def versionCode = variant.versionCode ? variant.versionCode : getVersionCode(project)
             def versionName = variant.versionName ? variant.versionName : getVersionName(project)
+            def timestamp = getDate();
 
-            def fileName = "$project.name-$variant.name-$versionName-${versionCode}.apk"
+            def fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
             variant.outputs.each { output ->
                 output.outputFile = new File(output.outputFile.parent, fileName)
                 println "$TAG Setting $output.name variant output name to $fileName"
@@ -73,5 +77,9 @@ class Util {
             System.err.println "$TAG ERROR: Missing $projectDir/$propFileName"
         }
     }
-    
+
+    def getDate() {
+        DateFormat df = new SimpleDateFormat("YYYYMMDDHHmm");
+        return df.format(new Date());
+    }
 }

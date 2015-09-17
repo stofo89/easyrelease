@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0-rc1'
+        classpath 'com.android.tools.build:gradle:1.2.3'
     }
 }
 
@@ -13,6 +13,6 @@ ext {
 }
 
 allprojects {
-    group = 'eu.inloop'
+    group = 'sk.stofo89'
     version = VERSION_NAME
 }

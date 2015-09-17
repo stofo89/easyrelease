@@ -1,4 +1,9 @@
+# Fork 0.2.2
+
+  - Added timestamp to apk name
+
 ## 0.2.2 (2014-12-05)
+
 
 Features:
 
