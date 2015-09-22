@@ -20,10 +20,10 @@ apply from: 'https://raw.github.com/martinadamek/gradle-mvn-push/master/gradle-m
 
 // comment previous line and uncomment following section to use ./gradlew uploadArchives to upload to local Maven repo
 
-// uploadArchives {
-//     repositories {
-//         mavenDeployer {
-//             repository(url: "file://${System.env.HOME}/.m2/repository")
-//         }
-//     }
-// }
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://${System.env.HOME}/.m2/repository")
+        }
+    }
+}

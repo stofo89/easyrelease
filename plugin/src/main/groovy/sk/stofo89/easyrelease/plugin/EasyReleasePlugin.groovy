@@ -1,8 +1,7 @@
-package eu.inloop.easyrelease.plugin
+package sk.stofo89.easyrelease.plugin
 
-import org.gradle.api.Project
 import org.gradle.api.Plugin
-import org.gradle.api.tasks.TaskContainer
+import org.gradle.api.Project
 
 class EasyReleasePlugin implements Plugin<Project> {
 
@@ -10,7 +9,7 @@ class EasyReleasePlugin implements Plugin<Project> {
     void apply(Project project) {
 
         // Setup properties for our customization, otherwise zipalign will not start
-        
+
         project.android {
             signingConfigs {
                 release {

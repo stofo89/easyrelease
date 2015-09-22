@@ -1,4 +1,4 @@
-package eu.inloop.easyrelease.plugin
+package sk.stofo89.easyrelease.plugin
 
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -59,10 +59,19 @@ class Util {
      * Loads signing properties from file and sets them in release signingConfig
      */
     static def loadProperties(project) {
-        def projectDir = project.projectDir
-        def propFileName = 'easyrelease.properties'
-        def propFile = new File("$projectDir/$propFileName")
-        println "$TAG Reading $projectDir/$propFileName"
+        def propFileName
+        def propFile
+        println "$TAG Reading SIGN LOCATION " + System.getenv("SIGN_LOCATION")
+        if (System.getenv("SIGN_LOCATION") && new File(System.getenv("SIGN_LOCATION")).exists()) {
+            propFileName = System.getenv("SIGN_LOCATION")
+            propFile = new File("$propFileName")
+        } else {
+            propFileName = 'easyrelease.properties'
+            def projectDir = project.projectDir
+            propFile = new File("$projectDir/$propFileName")
+        }
+
+        println "$TAG Reading $propFileName"
         if (propFile.canRead()) {
             def props = new Properties()
             props.load(new FileInputStream(propFile))
@@ -74,11 +83,11 @@ class Util {
             buildType.keyPassword = props["KEY_PASSWORD"]
 
         } else {
-            System.err.println "$TAG ERROR: Missing $projectDir/$propFileName"
+            System.err.println "$TAG ERROR: Missing $propFileName"
         }
     }
 
-    def getDate() {
+    static def getDate() {
         DateFormat df = new SimpleDateFormat("YYYYMMDDHHmm");
         return df.format(new Date());
     }
