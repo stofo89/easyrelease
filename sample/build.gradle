@@ -1,10 +1,11 @@
 buildscript {
     repositories {
-        mavenCentral()
+        //mavenCentral()
         mavenLocal()
     }
     dependencies {
-        classpath 'eu.inloop:easyrelease:0.2.0'
+        //compile project(':plugin')
+        classpath 'eu.inloop:easyrelease:0.2.2'
     }
 }
 

@@ -27,17 +27,15 @@ class EasyReleasePlugin implements Plugin<Project> {
                     debuggable false
                     zipAlignEnabled true
                     signingConfig project.android.signingConfigs.release
+
+                    // change the apk file name and load signing properties
+                    project.afterEvaluate {
+                        Util.setApkName(project, true)
+                        Util.loadProperties(project)
+                    }
                 }
             }
         }
-
-        // change the apk file name and load signing properties
-            
-        project.afterEvaluate {
-            Util.setApkName(project)
-            Util.loadProperties(project)
-        }
-
     }
 
 }
