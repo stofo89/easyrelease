@@ -10,7 +10,7 @@ class Util {
     /**
      * Modifies output apk file name for all application variants
      */
-    static def setApkName(project, isRelease = false) {
+    static def setApkName(project) {
         project.android.applicationVariants.all { variant ->
 
             // first check version code and name from Gradle build script, then from AndroidManifest.xml
@@ -19,16 +19,15 @@ class Util {
             def timestamp = getDate();
             def fileName;
 
-            if (isRelease) {
+            fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
+            if (variant.name.equalsIgnoreCase("release")) {
+                fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
+            } else {
                 println "$TAG DEBUG - only version"
                 fileName = "$project.name-$variant.name-$versionName-${versionCode}.apk"
-                return
-            } else {
-                fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
             }
 
             variant.outputs.each { output ->
-                delete(output.outputFile.parent)
                 output.outputFile = new File(output.outputFile.parent, fileName)
                 println "$TAG Setting $output.name variant output name to $fileName"
             }
