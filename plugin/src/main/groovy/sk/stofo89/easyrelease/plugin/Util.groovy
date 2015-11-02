@@ -96,7 +96,7 @@ class Util {
     }
 
     static def getDate() {
-        DateFormat df = new SimpleDateFormat("YYYYMMDDHHmm");
+        DateFormat df = new SimpleDateFormat("YYYYMMddHHmm");
         return df.format(new Date());
     }
 }
