@@ -18,7 +18,7 @@ class Util {
             def versionName = variant.versionName ? variant.versionName : getVersionName(project)
             def timestamp = getDate();
             def fileName;
-            def variantName = $variant.name;
+            def variantName = variant.name;
             if (variant.name.equalsIgnoreCase("developRelease")) {
                 variantName = "test";
             } else if (variant.name.equalsIgnoreCase("productionRelease")) {
