@@ -31,10 +31,10 @@ class Util {
 
             fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
             if (variant.name.equalsIgnoreCase("test") || variant.name.equalsIgnoreCase("production")) {
-                fileName = "$project.name-variantName-$versionName-${versionCode}-${timestamp}.apk"
+                fileName = "$project.name-$variantName-$versionName-${versionCode}-${timestamp}.apk"
             } else {
                 println "$TAG DEBUG - only version"
-                fileName = "$project.name-variantName-$versionName-${versionCode}.apk"
+                fileName = "$project.name-$variantName-$versionName-${versionCode}.apk"
             }
 
             variant.outputs.each { output ->
