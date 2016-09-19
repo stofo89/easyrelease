@@ -18,10 +18,20 @@ class Util {
             def versionName = variant.versionName ? variant.versionName : getVersionName(project)
             def timestamp = getDate();
             def fileName;
+            def variantName = $variant.name;
+            if (variant.name.equalsIgnoreCase("developRelease")) {
+                variantName = "test";
+            } else if (variant.name.equalsIgnoreCase("productionRelease")) {
+                variantName = "production";
+            } else if (variant.name.equalsIgnoreCase("developDebug")) {
+                variantName = "testDebug";
+            } else if (variant.name.equalsIgnoreCase("productionDebug")) {
+                variantName = "productionDebug";
+            }
 
             fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
-            if (variant.name.equalsIgnoreCase("release")) {
-                fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
+            if (variant.name.equalsIgnoreCase("test") || variant.name.equalsIgnoreCase("production")) {
+                fileName = "$project.name-variantName-$versionName-${versionCode}-${timestamp}.apk"
             } else {
                 println "$TAG DEBUG - only version"
                 fileName = "$project.name-$variant.name-$versionName-${versionCode}.apk"
