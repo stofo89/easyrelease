@@ -29,8 +29,8 @@ class Util {
                 variantName = "productionDebug";
             }
 
-            fileName = "$project.name-$variant.name-$versionName-${versionCode}-${timestamp}.apk"
-            if (variantName.equalsIgnoreCase("test") || variantName.equalsIgnoreCase("production")) {
+            if (variantName.equalsIgnoreCase("test") || variantName.equalsIgnoreCase("production")
+                    || variantName.equalsIgnoreCase("release")) {
                 fileName = "$project.name-$variantName-$versionName-${versionCode}-${timestamp}.apk"
             } else {
                 println "$TAG DEBUG - only version"
